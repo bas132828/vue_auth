@@ -1,32 +1,71 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+$background: #faf3f3;
+$dark: #181c43;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
-#nav {
-  padding: 30px;
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+body {
+  align-content: center;
+  font-family: "Inter", sans-serif;
+  background: $background;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+#app {
+  width: 100vw;
+  height: 100vh;
+  background: $background;
+}
+
+@media only screen and (max-width: 270px) {
+  html {
+    font-size: 46%;
+  }
+}
+@media only screen and (max-width: 300px) {
+  html {
+    font-size: 50%;
+  }
+}
+@media only screen and (max-width: 320px) {
+  html {
+    font-size: 54%;
+  }
+}
+
+@media only screen and (min-width: 370px) {
+  html {
+    font-size: 64%;
+  }
+}
+@media only screen and (min-width: 400px) {
+  html {
+    font-size: 70%;
+  }
+}
+
+@media only screen and (min-width: 500px) {
+  html {
+    font-size: 72%;
+  }
+}
+@media only screen and (min-width: 600px) {
+  html {
+    font-size: 75%;
   }
 }
 </style>
