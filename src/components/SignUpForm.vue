@@ -2,15 +2,17 @@
   <form class="sing-in-form" @submit.prevent="submitHandler">
     <div class="input-container">
       <label for="#name">Full name</label>
-      <input
-        v-model.trim="name"
-        :class="{
-          ['animate__animated animate__headShake invalid']:
-            $v.name.$dirty && !$v.name.required,
-        }"
-        type="text"
-        id="name"
-      />
+      <div class="shakeable">
+        <input
+          v-model.trim="name"
+          :class="{
+            ['animate__animated animate__headShake invalid']:
+              $v.name.$dirty && !$v.name.required,
+          }"
+          type="text"
+          id="name"
+        />
+      </div>
       <div class="error-text" v-if="$v.name.$dirty && !$v.name.required">
         Name required
       </div>
@@ -18,16 +20,18 @@
 
     <div class="input-container">
       <label for="#email">E-mail</label>
-      <input
-        type="text"
-        id="email"
-        v-model.trim="email"
-        :class="{
-          ['animate__animated animate__headShake invalid']:
-            ($v.email.$dirty && !$v.email.required) ||
-            ($v.email.$dirty && !$v.email.email),
-        }"
-      />
+      <div class="shakeable">
+        <input
+          type="text"
+          id="email"
+          v-model.trim="email"
+          :class="{
+            ['animate__animated animate__headShake invalid']:
+              ($v.email.$dirty && !$v.email.required) ||
+              ($v.email.$dirty && !$v.email.email),
+          }"
+        />
+      </div>
       <div class="error-text" v-if="$v.email.$dirty && !$v.email.required">
         Email required
       </div>
@@ -37,18 +41,43 @@
     </div>
     <div class="input-container">
       <label for="#password">Password</label>
-      <input
-        :type="visibility"
-        v-model.trim="password"
+      <div
+        class="shakeable"
         :class="{
-          ['animate__animated animate__headShake invalid']:
+          ['animate__animated animate__headShake']:
             ($v.password.$dirty && !$v.password.required) ||
             ($v.password.$dirty && !$v.password.minLength) ||
             ($v.password.$dirty && !$v.password.hasSpecialChar) ||
             ($v.password.$dirty && !$v.password.hasUppercase),
         }"
-        id="password"
-      />
+      >
+        <input
+          :type="visibility"
+          v-model.trim="password"
+          :class="{
+            ['invalid']:
+              ($v.password.$dirty && !$v.password.required) ||
+              ($v.password.$dirty && !$v.password.minLength) ||
+              ($v.password.$dirty && !$v.password.hasSpecialChar) ||
+              ($v.password.$dirty && !$v.password.hasUppercase),
+          }"
+          id="password"
+        />
+        <img
+          src="../images/eye-opened.svg"
+          class="eye-opened"
+          alt="eye-opened-logo"
+          @click="(showPass = !showPass), showPassword()"
+          v-show="!showPass"
+        />
+        <img
+          src="../images/eye-closed.svg"
+          alt="eye-closed-logo"
+          @click="(showPass = !showPass), hidePassword()"
+          v-show="showPass"
+          class="eye-closed"
+        />
+      </div>
       <div
         class="error-text"
         v-if="$v.password.$dirty && !$v.password.required"
@@ -81,20 +110,7 @@
         {{ $v.password.$params.minLength.min }} characters long, not
         {{ password.length }})
       </div>
-      <img
-        src="../images/eye-opened.svg"
-        class="eye-opened"
-        alt="eye-opened-logo"
-        @click="(showPass = !showPass), showPassword()"
-        v-show="!showPass"
-      />
-      <img
-        src="../images/eye-closed.svg"
-        alt="eye-closed-logo"
-        @click="(showPass = !showPass), hidePassword()"
-        v-show="showPass"
-        class="eye-closed"
-      />
+
       <img
         src="../images/question-mark.svg"
         alt="question-mark-logo"
@@ -110,18 +126,43 @@
     </div>
     <div class="input-container">
       <label for="#password-rep">Password</label>
-      <input
-        :type="visibility"
-        v-model.trim="password_rep"
+      <div
+        class="shakeable"
         :class="{
-          ['animate__animated animate__headShake invalid']:
+          ['animate__animated animate__headShake ']:
             ($v.password_rep.$dirty && !$v.password_rep.required) ||
             ($v.password_rep.$dirty && !$v.password_rep.minLength) ||
             ($v.password.$dirty && !$v.password.hasSpecialChar) ||
             ($v.password.$dirty && !$v.password.hasUppercase),
         }"
-        id="password-rep"
-      />
+      >
+        <input
+          :type="visibility"
+          v-model.trim="password_rep"
+          :class="{
+            ['invalid']:
+              ($v.password_rep.$dirty && !$v.password_rep.required) ||
+              ($v.password_rep.$dirty && !$v.password_rep.minLength) ||
+              ($v.password.$dirty && !$v.password.hasSpecialChar) ||
+              ($v.password.$dirty && !$v.password.hasUppercase),
+          }"
+          id="password-rep"
+        />
+        <img
+          src="../images/eye-opened.svg"
+          alt="eye-opened-logo"
+          @click="(showPass = !showPass), showPassword()"
+          v-show="!showPass"
+          class="eye-opened"
+        />
+        <img
+          src="../images/eye-closed.svg"
+          alt="eye-closed-log"
+          @click="(showPass = !showPass), hidePassword()"
+          v-show="showPass"
+          class="eye-closed"
+        />
+      </div>
       <div
         class="error-text"
         v-if="$v.password_rep.$dirty && !$v.password_rep.required"
@@ -158,20 +199,6 @@
       >
         Passwords must match
       </div>
-      <img
-        src="../images/eye-opened.svg"
-        alt="eye-opened-logo"
-        @click="(showPass = !showPass), showPassword()"
-        v-show="!showPass"
-        class="eye-opened"
-      />
-      <img
-        src="../images/eye-closed.svg"
-        alt="eye-closed-log"
-        @click="(showPass = !showPass), hidePassword()"
-        v-show="showPass"
-        class="eye-closed"
-      />
       <button type="submit" class="sing-up-form--btn">
         Sign up
       </button>
@@ -278,15 +305,15 @@ $alert: #ff6683;
 }
 .eye-opened {
   position: absolute;
-  right: 4rem;
-  top: 4.8rem;
+  right: 1.4rem;
+  top: 1.4rem;
   opacity: 0.7;
   width: 1.7rem;
 }
 .eye-closed {
   position: absolute;
-  right: 4rem;
-  top: 4.7rem;
+  right: 1.4rem;
+  top: 1.32rem;
   opacity: 0.7;
   width: 1.7rem;
 }
@@ -312,11 +339,15 @@ $alert: #ff6683;
   align-items: flex-start;
   flex-direction: column;
   height: 100%;
+  .shakeable {
+    position: relative;
+    width: 80%;
+  }
   input {
     background-color: #f3f3fa;
     border-radius: 2rem;
     border: none;
-    width: 80%;
+    width: 100%;
     height: 4rem;
     outline: none;
     padding: 1.5rem;

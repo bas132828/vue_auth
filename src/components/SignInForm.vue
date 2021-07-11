@@ -15,45 +15,58 @@
         <button v-on:click.prevent="resetForm()">&times;</button>
       </div>
       <label for="#email">E-mail</label>
-      <input
-        type="text"
-        id="email"
-        v-model.trim="email"
-        :class="{
-          ['animate__animated animate__headShake invalid']:
-            ($v.email.$dirty && !$v.email.required) ||
-            ($v.email.$dirty && !$v.email.email),
-        }"
-      />
+      <div class="shakeable ">
+        <input
+          type="text"
+          id="email"
+          v-model.trim="email"
+          :class="{
+            ['animate__animated animate__headShake invalid']:
+              ($v.email.$dirty && !$v.email.required) ||
+              ($v.email.$dirty && !$v.email.email),
+          }"
+        />
+      </div>
     </div>
     <div class="input-container">
       <label for="#password">Password</label>
-      <input
-        :type="visibility"
-        v-model.trim="password"
+      <div
+        class="shakeable"
         :class="{
-          ['animate__animated animate__headShake invalid']:
+          ['animate__animated animate__headShake']:
             ($v.password.$dirty && !$v.password.required) ||
             ($v.password.$dirty && !$v.password.minLength) ||
             ($v.password.$dirty && !$v.password.hasSpecialChar) ||
             ($v.password.$dirty && !$v.password.hasUppercase),
         }"
-        id="password"
-      />
-      <img
-        src="../images/eye-opened.svg"
-        @click="(showPass = !showPass), showPassword()"
-        v-show="!showPass"
-        class="eye-opened"
-        alt="eye-opened_logo"
-      />
-      <img
-        src="../images/eye-closed.svg"
-        @click="(showPass = !showPass), hidePassword()"
-        v-show="showPass"
-        class="eye-closed"
-        alt="eye-closed_logo"
-      />
+      >
+        <input
+          :type="visibility"
+          v-model.trim="password"
+          :class="{
+            ['invalid']:
+              ($v.password.$dirty && !$v.password.required) ||
+              ($v.password.$dirty && !$v.password.minLength) ||
+              ($v.password.$dirty && !$v.password.hasSpecialChar) ||
+              ($v.password.$dirty && !$v.password.hasUppercase),
+          }"
+          id="password"
+        />
+        <img
+          src="../images/eye-opened.svg"
+          @click="(showPass = !showPass), showPassword()"
+          v-show="!showPass"
+          class="eye-opened"
+          alt="eye-opened_logo"
+        />
+        <img
+          src="../images/eye-closed.svg"
+          @click="(showPass = !showPass), hidePassword()"
+          v-show="showPass"
+          class="eye-closed"
+          alt="eye-closed_logo"
+        />
+      </div>
       <img
         src="../images/question-mark.svg"
         alt="question-mark-logo"
@@ -193,15 +206,15 @@ $alert: #ff6683;
 }
 .eye-opened {
   position: absolute;
-  right: 4rem;
-  top: 4.8rem;
+  right: 1.4rem;
+  top: 1.4rem;
   opacity: 0.7;
   width: 1.7rem;
 }
 .eye-closed {
   position: absolute;
-  right: 4rem;
-  top: 4.7rem;
+  right: 1.4rem;
+  top: 1.32rem;
   opacity: 0.7;
   width: 1.7rem;
 }
@@ -221,11 +234,15 @@ $alert: #ff6683;
   align-items: flex-start;
   flex-direction: column;
   height: 100%;
+  .shakeable {
+    position: relative;
+    width: 80%;
+  }
   input {
     background-color: #f3f3fa;
     border-radius: 2rem;
     border: none;
-    width: 80%;
+    width: 100%;
     height: 4rem;
     outline: none;
     padding: 1rem;
