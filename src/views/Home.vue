@@ -40,9 +40,9 @@ $dark: #181c43;
 }
 
 .lady-enter {
-  height: 40rem;
+  width: 100%;
+  max-height: 40rem;
   bottom: 0;
-
   position: absolute;
 }
 button {

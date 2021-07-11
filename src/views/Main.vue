@@ -3,7 +3,7 @@
     <div class="wrapper">
       <h1 v-if="name">Hello, {{ name }}!</h1>
       <h1 v-else>
-        Hello, well-trusted man or woman, who's name we get from the server
+        Hello, well-trusted man or woman, whose name we get from the server
       </h1>
     </div>
     <img src="../images/lady-out.svg" class="lady-out" alt="lady-out-logo" />

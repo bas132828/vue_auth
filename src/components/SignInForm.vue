@@ -20,7 +20,7 @@
         id="email"
         v-model.trim="email"
         :class="{
-          invalid:
+          ['animate__animated animate__headShake invalid']:
             ($v.email.$dirty && !$v.email.required) ||
             ($v.email.$dirty && !$v.email.email),
         }"
@@ -32,7 +32,7 @@
         :type="visibility"
         v-model.trim="password"
         :class="{
-          invalid:
+          ['animate__animated animate__headShake invalid']:
             ($v.password.$dirty && !$v.password.required) ||
             ($v.password.$dirty && !$v.password.minLength) ||
             ($v.password.$dirty && !$v.password.hasSpecialChar) ||
@@ -60,8 +60,11 @@
         v-on:click="isInvisible = !isInvisible"
         class="question-mark"
       />
-      <div class="dialog-window" :class="{ invisible: isInvisible }">
-        <div class="dialog-window--bottom"></div>
+      <div
+        class="dialog-window animate__animated animate__fadeIn"
+        :class="{ invisible: isInvisible }"
+      >
+        <div class="dialog-window--bottom" />
         <div class="dialog-window--message">
           Password must contain 8+ symbols, 1 special and 2 capital letters
         </div>
