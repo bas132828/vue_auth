@@ -1,3 +1,9 @@
+<img width="378" alt="Screenshot 2021-07-25 at 18 32 23" src="https://user-images.githubusercontent.com/63089699/126904670-97af3742-ec4d-4143-be5f-4312cc39ecf4.png">
+<img width="378" alt="Screenshot 2021-07-25 at 18 31 42" src="https://user-images.githubusercontent.com/63089699/126904672-b805beee-ad79-4c65-aa46-6cf709aef5a9.png">
+<img width="382" alt="Screenshot 2021-07-25 at 18 31 01" src="https://user-images.githubusercontent.com/63089699/126904674-c9fe3224-af0e-4e6a-8547-e6bdcff70169.png">
+<img width="385" alt="Screenshot 2021-07-25 at 18 30 35" src="https://user-images.githubusercontent.com/63089699/126904676-c1ed0afa-eb72-45b2-8f59-e6d774796387.png">
+
+
 # test_app (тестовое задание, тз ниже)
 
 Vue.js project using Vuelidate, SASS and animation.css.
