@@ -5,7 +5,7 @@
 
 
 
-# test_app (тестовое задание, тз ниже)
+
 
 Vue.js project using Vuelidate, SASS and animation.css.
 Session storage used for username recognition (auto-deleted after login attempt).
